@@ -45,6 +45,7 @@ public class Game extends StateBasedGame {
     public Game(String name) {
         super(gamename);
         this.addState((GameState) new S0_MainMenu(menu));
+        this.addState((GameState) new Room(20));
         this.addState((GameState) new S1_Playing(playing));
         this.addState((GameState) new S3_LoadPage(loadpage));
         this.addState((GameState) new S2_SavePage(savepage));
@@ -66,6 +67,7 @@ public class Game extends StateBasedGame {
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
         this.getState(menu).init(gc, this);
+        this.getState(20).init(gc, this);
         this.getState(playing).init(gc, this);
         this.getState(loadpage).init(gc, this);
         this.getState(savepage).init(gc, this);

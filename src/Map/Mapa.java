@@ -97,7 +97,7 @@ public class Mapa {
             for (int j = 0; j < map.getHeight(); j++) {
                 for (int i = 0; i < map.getWidth(); i++) {
                     if (map.getTileId(i, j, collisions) !=0) {
-                        iteracciones.add(new Hitbox((float) i * 32-9, (float) j * 32-9, 50, 50));  //32 = ancho del patron
+                        iteracciones.add(new Hitbox((float) ((float) i * 32-3.2), (float) j * 32-3, 40, 40));  //32 = ancho del patron
                     }
                 }
             }
@@ -149,16 +149,15 @@ public class Mapa {
     }
     public void renderMap(GameContainer gc, Graphics grphcs, boolean ver_hitbox) {
         map.render((int) this.x, (int) this.y, 0, 0, gc.getWidth(), gc.getHeight());
-        /**boolean amarillo=true;
-        for (int i=0;i<blocks.size();i++) {
+        /*for (int i=0;i<blocks.size();i++) {
                 grphcs.setColor(Color.black);
                 grphcs.drawRect(blocks.get(i).getRectangulo().getX(), blocks.get(i).getRectangulo().getY(), blocks.get(i).getRectangulo().getWidth(), blocks.get(i).getRectangulo().getHeight());
-            }
+            }*/
         for (int i=0;i<iteracciones.size();i++) {
                 grphcs.setColor(Color.magenta);
                 grphcs.drawRect(iteracciones.get(i).getRectangulo().getX(), iteracciones.get(i).getRectangulo().getY(), iteracciones.get(i).getRectangulo().getWidth(), iteracciones.get(i).getRectangulo().getHeight());
             }
-            */grphcs.setColor(Color.black);
+            grphcs.setColor(Color.black);
             grphcs.drawRect(Character.getCollision().getRectangulo().getX(), Character.getCollision().getRectangulo().getY(), Character.getCollision().getRectangulo().getHeight(), Character.getCollision().getRectangulo().getWidth());
         }
     public void collisions(int i, GameContainer gc, String dir)

@@ -11,6 +11,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 import Map.*;
 import java.util.ArrayList;
+import static org.newdawn.slick.Color.black;
 /**
  *
  * @author razvanvc
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 
 public class S1_Playing extends BasicGameState {
     private Mapa map;
+    private boolean fog=true;
     private boolean interact=false;
     private PlayableCharacter Char;
     private ArrayList<NPC> npcs;
@@ -29,7 +31,7 @@ public class S1_Playing extends BasicGameState {
     @Override
     //Initialice some stuff (dont know yet)
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        Char=new PlayableCharacter("id",(float) gc.getWidth()/2,(float) gc.getHeight()/2, "pCName",  70, 70);
+        Char=new PlayableCharacter("id",(float) gc.getWidth()/2,(float) gc.getHeight()/2, "pCName",  50, 100);
         map=new Mapa("src/Tiled/Laberinth.tmx", gc, Char, npcs, enemy);
         int positionx=-625, positiony=-405;
         map.setX(positionx);
@@ -41,10 +43,17 @@ public class S1_Playing extends BasicGameState {
     @Override
     //Draws things on the screen
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-        g.drawString("You're in the Play page",100,100);
         map.renderMap(gc, g, true);
         g.setColor(Color.white);
         interact(g);
+        g.setColor(black);
+        if(fog)
+        {
+            g.fillRect(0, 0, gc.getWidth(), (float) (gc.getHeight()/(2.55)));
+            g.fillRect(0, 0, (float) (gc.getWidth()/(2.4)), gc.getHeight());
+            g.fillRect(0, (float) (gc.getHeight()/(1.54)), gc.getWidth(), (float) (gc.getHeight()/2.4));
+            g.fillRect((float) (gc.getWidth()/(1.62)),0, gc.getWidth()/(2), gc.getHeight());
+        }
     }
 
     @Override
